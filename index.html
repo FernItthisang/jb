@@ -42,47 +42,17 @@
   camera-controls
   alt="A 3D model of a croissant">
 </model-viewer> -->
-<!-- <model-viewer 
+<model-viewer 
   src="7_10_2025.glb"
   ios-src="7_10_2025.usdz"
   ar 
   camera-controls>
-</model-viewer> -->
+</model-viewer>
 
 
   <button onclick="document.querySelector('model-viewer').activateAR();">
     See in Your Space
   </button>
-
-  <p id="ar-message">If AR doesn't work, please open this page in Chrome (Android) or Safari (iPhone) to view in AR.</p>
-
-<button onclick="openInBrowser()">Open in Browser</button>
-
-<div id="browser-warning" style="display:none; background:#fff3cd; padding: 15px; border-radius: 8px; margin: 20px;">
-    <p style="margin:0;">
-      To use AR, please open this page in:
-      <br><strong>Safari (iPhone) or Chrome (Android)</strong>
-    </p>
-    <button onclick="openProperBrowser()" style="margin-top:10px; padding:10px 20px;">Open in Browser</button>
-  </div>
-  
-  <script>
-    if (isInAppBrowser()) {
-      document.getElementById('browser-warning').style.display = 'block';
-    }
-  
-    function openProperBrowser() {
-      const url = 'https://jbbakery.netlify.app';  // Your actual site link
-      const ua = navigator.userAgent.toLowerCase();
-      if (ua.indexOf('android') > -1) {
-        window.location.href = 'intent://' + url.replace('https://', '') + '#Intent;scheme=https;package=com.android.chrome;end;';
-      } else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) {
-        window.location.href = url;  // iPhone: open in Safari
-      } else {
-        window.location.href = url;
-      }
-    }
-  </script>  
 
 </body>
 </html>
