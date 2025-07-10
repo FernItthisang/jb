@@ -68,22 +68,31 @@
 
 <button onclick="openInBrowser()">Open in Browser</button>
 
-<script>
-  function openInBrowser() {
-    const ua = navigator.userAgent.toLowerCase();
-    if (ua.indexOf('android') > -1) {
-      // Suggest Chrome on Android
-      window.open('googlechrome://jbbakery.netlify.app', '_blank');
-    } else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) {
-      // Suggest Safari on iOS
-      window.location.href = 'https://jbbakery.netlify.app';  // iOS users will likely be in Safari already
-    } else {
-      // Fallback
-      window.location.href = 'https://jbbakery.netlify.app';
+<div id="browser-warning" style="display:none; background:#fff3cd; padding: 15px; border-radius: 8px; margin: 20px;">
+    <p style="margin:0;">
+      To use AR, please open this page in:
+      <br><strong>Safari (iPhone) or Chrome (Android)</strong>
+    </p>
+    <button onclick="openProperBrowser()" style="margin-top:10px; padding:10px 20px;">Open in Browser</button>
+  </div>
+  
+  <script>
+    if (isInAppBrowser()) {
+      document.getElementById('browser-warning').style.display = 'block';
     }
-  }
-</script>
-
+  
+    function openProperBrowser() {
+      const url = 'https://jbbakery.netlify.app';  // Your actual site link
+      const ua = navigator.userAgent.toLowerCase();
+      if (ua.indexOf('android') > -1) {
+        window.location.href = 'intent://' + url.replace('https://', '') + '#Intent;scheme=https;package=com.android.chrome;end;';
+      } else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) {
+        window.location.href = url;  // iPhone: open in Safari
+      } else {
+        window.location.href = url;
+      }
+    }
+  </script>  
 
 </body>
 </html>
