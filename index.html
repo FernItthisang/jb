@@ -42,17 +42,48 @@
   camera-controls
   alt="A 3D model of a croissant">
 </model-viewer> -->
-<model-viewer 
+<!-- <model-viewer 
   src="7_10_2025.glb"
   ios-src="7_10_2025.usdz"
   ar 
   camera-controls>
+</model-viewer> -->
+
+<model-viewer 
+  src="7_10_2025.glb"
+  ios-src="7_10_2025.usdz"
+  ar 
+  camera-controls
+  ar-modes="scene-viewer quick-look webxr"
+  alt="3D Bread">
 </model-viewer>
+
 
 
   <button onclick="document.querySelector('model-viewer').activateAR();">
     See in Your Space
   </button>
+
+  <p id="ar-message">If AR doesn't work, please open this page in Chrome (Android) or Safari (iPhone) to view in AR.</p>
+
+<button onclick="openInBrowser()">Open in Browser</button>
+
+<script>
+  function openInBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf('android') > -1) {
+      // Suggest Chrome on Android
+      window.open('googlechrome://jbbakery.netlify.app', '_blank');
+    } else if (ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1) {
+      // Suggest Safari on iOS
+      window.location.href = 'https://jbbakery.netlify.app';  // iOS users will likely be in Safari already
+    } else {
+      // Fallback
+      window.location.href = 'https://jbbakery.netlify.app';
+    }
+  }
+</script>
+
 
 </body>
 </html>
