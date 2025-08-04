@@ -35,7 +35,7 @@
   <p>See the real size in your room or on your plate!</p>
 
   <model-viewer
-  src="test.glb"
+  src="chicken.glb"
   ios-src="test.usdz"
   ar
   camera-controls
@@ -46,6 +46,10 @@
 
   <button onclick="document.querySelector('model-viewer').activateAR();">
     See in Your Space
+  </button>
+
+  <button onclick="window.open(location.href, '_blank');">
+    Open in Safari or Chrome
   </button>
 
 </body>
