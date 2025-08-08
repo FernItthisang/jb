@@ -41,6 +41,7 @@
   ar-modes="webxr"
   camera-controls
   ar-scale="fixed"
+  ar-placement="auto"
   ar-prompt="ขนมปังจะขยับตามกล้องของคุณ"
   alt="3D Bread">
     <div slot="ar-prompt" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 10px; border-radius: 5px; font-size: 14px;">
@@ -59,13 +60,18 @@
       const modelViewer = document.querySelector('model-viewer');
       modelViewer.activateAR();
       
-      // Add tracking for phone movement
-      if (window.DeviceOrientationEvent) {
-        window.addEventListener('deviceorientation', function(event) {
-          // This will track phone movement
-          console.log('Phone moved:', event.alpha, event.beta, event.gamma);
-        });
-      }
+      // Make model follow camera automatically
+      modelViewer.addEventListener('ar-status', function(event) {
+        if (event.detail.status === 'ar-tracking') {
+          // Model is now tracking with camera
+          console.log('AR tracking active');
+        }
+      });
+      
+      // Disable manual interaction
+      modelViewer.addEventListener('load', function() {
+        modelViewer.cameraControls = false;
+      });
     }
   </script>
 
